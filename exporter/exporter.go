@@ -155,37 +155,31 @@ func (e *Exporter) makeRegistry(ctx context.Context, client *mongo.Client, topol
 
 	return registry
 }
-func getTarget(target string, mongoList []*config.MongoInstance) (string, error) {
-	targetValue := ""
-	if !strings.Contains(target, "@") {
-		return "", errors.New("uri must contain @")
+func getTarget(module string, target string, mongoList []*config.MongoModule) (string, error) {
+	arr := strings.Split(target, ":")
+	if len(arr) < 2 {
+		return "", errors.New("uri error")
 	}
-	arr := strings.Split(target, "@")
-	if len(arr[0]) == 0 || strings.Contains(arr[0], ":") {
-		return target, nil
-	}
-	tmp := strings.Split(arr[1], ":")
-	ip := tmp[0]
-	port := tmp[1]
-	username := arr[0]
-	var password string
-	for i := 0; i < len(mongoList); i++ {
-		if ip == mongoList[i].Host && port == mongoList[i].Port {
-			for j := 0; j < len(mongoList[i].Account); j++ {
-				if username == mongoList[i].Account[j].Username {
-					password = mongoList[i].Account[j].Password
-					break
-				}
+	ip := arr[0]
+	port := arr[1]
+	var targetValue string
+	if module == "" {
+		targetValue = "@" + ip + ":" + port
+	} else {
+		var user string
+		var password string
+		for i := 0; i < len(mongoList); i++ {
+			if mongoList[i].Name == module {
+				user = mongoList[i].User
+				password = mongoList[i].Password
+				break
 			}
 		}
-		if len(password) != 0 {
-			break
+		if user == "" || password == "" {
+			return "", errors.New("not found module in conf.yml")
 		}
+		targetValue = user + ":" + password + "@" + ip + ":" + port
 	}
-	if len(password) == 0 {
-		return "", errors.New("not found host or account in conf.yml")
-	}
-	targetValue = username + ":" + password + "@" + ip + ":" + port
 	return targetValue, nil
 }
 
@@ -194,13 +188,14 @@ func (e *Exporter) handler() http.Handler {
 		ctx := r.Context()
 		targetUri := e.opts.URI
 		target := r.URL.Query().Get("target")
+		module := r.URL.Query().Get("module")
 		if target != "" {
-			targetValue, err := getTarget(target, e.opts.Config.MongoInstance)
+			targetValue, err := getTarget(module, target, e.opts.Config.MongoModules)
 			if err != nil {
-				e.logger.Errorf("get target fail: %v", err.Error())
+				e.logger.Errorf("get exporter target fail: %v", err.Error())
 				http.Error(
 					w,
-					"get target fail: "+err.Error(),
+					"get exporter target fail: "+err.Error(),
 					http.StatusInternalServerError,
 				)
 				return

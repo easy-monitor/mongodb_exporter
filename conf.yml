@@ -1,10 +1,9 @@
-mongo-list:
+module:
+  - name: mongo
+    user: root
+    password: root
   - name: mongo-1
-    host: 127.0.0.1
-    port: 27017
-    account:
-      - username: root
-        password: root
-      - username: root-1
-        password: root-1
+    user: root-11
+    password: root-1
+
 

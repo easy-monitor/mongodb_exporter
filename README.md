@@ -33,13 +33,11 @@ exporter --mongodb.uri=mongodb://127.0.0.1:27017
 ```
 可以通过url动态指定采集目标
 ```
-http://127.0.0.1:9216/metrics?target={{usr}}:{{psw}}@{{ip}}:{{port}}
+#指定mongodb和module，会在conf.yml文件中获取账号密码模块
+http://127.0.0.1:9216/metrics?target={{ip}}:{{port}}&module={{module-name}}
 
-#其中，如果想不在url中嵌入password，可以不传password，会在conf.yml文件中获取password
-http://127.0.0.1:9216/metrics?target={{usr}}@{{ip}}:{{port}}
-
-#当不指定usr时，以不指定账号密码形式采集
-http://127.0.0.1:9216/metrics?target=@{{ip}}:{{port}}
+#指定mongodb不指定module，以不指定账号密码形式采集
+http://127.0.0.1:9216/metrics?target={{ip}}:{{port}}
 
 #当不指定target时，以程序启动时所指定的目标作为采集目标
 http://127.0.0.1:9216/metrics

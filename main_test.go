@@ -22,21 +22,15 @@ func TestBuildExporter(t *testing.T) {
 
 		CompatibleMode: true,
 	}
-	MongoInstances := []*config.MongoInstance{
+	MongoInstances := []*config.MongoModule{
 		{
-			Name:    "",
-			Host:    "",
-			Port:    "",
-			Account: []*config.Account{
-				{
-					Username: "",
-					Password: "",
-				},
-			},
+			Name:     "",
+			User:     "",
+			Password: "",
 		},
 	}
 	conf := &config.Config{
-		MongoInstance: MongoInstances,
+		MongoModules: MongoInstances,
 	}
 
 	_, err := buildExporter(opts, conf)
