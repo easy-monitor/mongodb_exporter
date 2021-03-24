@@ -56,7 +56,7 @@ type GlobalFlags struct {
 
 func loadConfig() (*config.Config, error) {
 	path, _ := os.Getwd()
-	path = filepath.Join(path, "/conf.yml")
+	path = filepath.Join(path, "conf/conf.yml")
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, errors.New("read conf.yml fail")
@@ -94,6 +94,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 		return
+	}
+	if opts.URI == "" {
+		opts.URI = conf.DefaultTarget.Host + ":" + conf.DefaultTarget.Port
 	}
 	e, err := buildExporter(opts, conf)
 	if err != nil {
