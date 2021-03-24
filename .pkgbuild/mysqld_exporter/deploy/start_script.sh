@@ -11,7 +11,6 @@
 app_folder="mongodb_exporter"                 # 项目根目录
 process_name="mongodb_exporter"              # 进程名
 install_base="/data/exporter"              # 安装根目录
-default_target="127.0.0.1:27017"           # exporter默认采集目标
 
 #############################################################
 
@@ -23,7 +22,7 @@ if [[ ! -d ${install_path} ]]; then
 fi
 
 # 启动命令
-start_cmd="./bin/mongodb_exporter --mongodb.uri=mongodb://${default_target} > log/${app_folder}.log"
+start_cmd="./bin/mongodb_exporter > log/${app_folder}.log"
 
 
 # 日志目录
