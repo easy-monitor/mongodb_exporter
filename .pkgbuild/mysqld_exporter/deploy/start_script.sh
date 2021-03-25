@@ -22,7 +22,7 @@ if [[ ! -d ${install_path} ]]; then
 fi
 
 # 启动命令
-start_cmd="./bin/mongodb_exporter > log/${app_folder}.log"
+start_cmd="./bin/mongodb_exporter > log/${app_folder}.log &"
 
 
 # 日志目录
