@@ -59,7 +59,7 @@ func loadConfig() (*config.Config, error) {
 	path = filepath.Join(path, "../conf/conf.yml")
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
-		return nil, errors.New("read conf.yml fail")
+		return nil, errors.New("read conf.yml fail:" + path)
 	}
 	conf := new(config.Config)
 	err = yaml.Unmarshal(data, conf)
