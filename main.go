@@ -56,7 +56,7 @@ type GlobalFlags struct {
 
 func loadConfig() (*config.Config, error) {
 	path, _ := os.Getwd()
-	path = filepath.Join(path, "conf/conf.yml")
+	path = filepath.Join(path, "../conf/conf.yml")
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, errors.New("read conf.yml fail")
