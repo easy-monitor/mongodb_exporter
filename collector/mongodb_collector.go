@@ -97,7 +97,6 @@ func NewMongodbCollector(opts *MongodbCollectorOpts) *MongodbCollector {
 			Help:      "Whether MongoDB is up.",
 		}),
 	}
-
 	return exporter
 }
 

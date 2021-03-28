@@ -1,0 +1,4 @@
+module:
+  - name: mongo
+    user: monitor
+    password: easyops
