@@ -95,9 +95,6 @@ func main() {
 		log.Fatal(err.Error())
 		return
 	}
-	if opts.URI == "" {
-		opts.URI = conf.DefaultTarget.Host + ":" + conf.DefaultTarget.Port
-	}
 	e, err := buildExporter(opts, conf)
 	if err != nil {
 		log.Fatal(err)

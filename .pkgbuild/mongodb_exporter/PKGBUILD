@@ -1,4 +1,4 @@
-pkgname=mongodb_exporter
+pkgname=mongodb_exporter_3.2v
 pkgver=VERSION  # placeholder
 pkgver() {
     # 工具名: 打包-基础包

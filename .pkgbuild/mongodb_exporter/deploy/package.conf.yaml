@@ -1,11 +1,8 @@
 service_list:
-  - name: logic.mongodb_exporter
-    port: 9216
-    host: ~
 dependencies: ~
 start_dependencies: []
 proc_list:
-    - proc_name: mongodb_exporter
+    - proc_name: mongodb_exporter_3.2v
       proc_num_min: ~
       proc_num_max: ~
       pid_file: ~

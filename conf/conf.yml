@@ -1,14 +1,7 @@
-default-target:
-  host: 127.0.0.1
-  port: 27017
-
 module:
   - name: mongo
-    user: root
-    password: root
-  - name: mongo-1
-    user: root-11
-    password: root-1
+    user: monitor
+    password: easyops
 
 
 

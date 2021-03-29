@@ -8,8 +8,8 @@
 # 初始化环境
 
 # 用户自定义
-app_folder="mongodb_exporter"                 # 项目根目录
-process_name="mongodb_exporter"              # 进程名
+app_folder="mongodb_exporter_3.2v"                 # 项目根目录
+process_name="mongodb_exporter_3.2v"              # 进程名
 install_base="/data/exporter"              # 安装根目录
 
 #############################################################
@@ -22,7 +22,7 @@ if [[ ! -d ${install_path} ]]; then
 fi
 
 # 启动命令
-start_cmd="./bin/mongodb_exporter > log/${app_folder}.log &"
+start_cmd="./bin/mongodb_exporter_3.2v > log/${app_folder}.log &"
 
 
 # 日志目录
