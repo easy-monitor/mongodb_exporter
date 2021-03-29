@@ -2,7 +2,7 @@ service_list:
 dependencies: ~
 start_dependencies: []
 proc_list:
-    - proc_name: mongodb_exporter_low
+    - proc_name: mongodb_exporter
       proc_num_min: ~
       proc_num_max: ~
       pid_file: ~

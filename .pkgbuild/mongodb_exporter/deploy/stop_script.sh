@@ -6,7 +6,7 @@
 
 #############################################################
 # 用户自定义
-process_name="mongodb_exporter_low"       # 进程名
+process_name="mongodb_exporter"       # 进程名
 
 
 # 停止进程
