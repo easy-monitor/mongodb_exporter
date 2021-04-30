@@ -183,6 +183,8 @@ func handler(programCollector prometheus.Collector, modules []*config.MongoModul
 		})
 
 		h.ServeHTTP(w, r)
+		defer mongodbCollector.Close()
+
 	})
 }
 
